@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:push_notification/core/constants/constants.dart';
 import 'package:push_notification/core/view_models/map_view_model.dart';
 import 'package:push_notification/ui/views/base_view.dart';
-
+import 'package:push_notification/core/models/coffee.dart';
 class MapView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -23,7 +23,9 @@ class MapViewState extends State<MapView>{
             onMapCreated: (controller) async{
               model.setController(controller);
               model.moveCamera(await model.getCurrentLocation());
+              model.setMarkers(coffeeShops);
             },
+            markers: Set.from(model.markers ?? []),
           ),
           floatingActionButton: IconButton(
             icon: Icon(
